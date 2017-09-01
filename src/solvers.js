@@ -39,7 +39,7 @@ window.countNRooksSolutions = function(n) {
     var rowIndex = n - piecesRemaining;
     for (var colIndex = 0; colIndex < n; colIndex++) {
       board.togglePiece(rowIndex, colIndex);
-      if (board.hasAnyRooksConflicts()) {
+      if (board.hasRowConflictAt(rowIndex) || board.hasColConflictAt(colIndex)) {
         board.togglePiece(rowIndex, colIndex);
       } else {
         buildSolution(piecesRemaining - 1); 
@@ -74,7 +74,8 @@ window.findNQueensSolution = function(n) {
     var rowIndex = n - piecesRemaining;
     for (var colIndex = 0; colIndex < n; colIndex++) { 
       board.togglePiece(rowIndex, colIndex);
-      if (board.hasAnyQueensConflicts()) {
+      if (board.hasRowConflictAt(rowIndex) || board.hasColConflictAt(colIndex) 
+          || board.hasMajorDiagonalConflictAt(colIndex, rowIndex) || board.hasMinorDiagonalConflictAt(colIndex, rowIndex)) {
         if (colIndex === n - 1) {
           board.togglePiece(rowIndex, colIndex);
           break;
@@ -124,7 +125,8 @@ window.countNQueensSolutions = function(n) {
     var rowIndex = n - piecesRemaining;
     for (var colIndex = 0; colIndex < n; colIndex++) { 
       board.togglePiece(rowIndex, colIndex);
-      if (board.hasAnyQueensConflicts()) {
+      if (board.hasRowConflictAt(rowIndex) || board.hasColConflictAt(colIndex) 
+          || board.hasMajorDiagonalConflictAt(colIndex, rowIndex) || board.hasMinorDiagonalConflictAt(colIndex, rowIndex)) {
         if (colIndex === n - 1) {
           board.togglePiece(rowIndex, colIndex);
           break;
@@ -133,7 +135,6 @@ window.countNQueensSolutions = function(n) {
       } else {
         
         buildSolution(piecesRemaining - 1); 
-        
         board.togglePiece(rowIndex, colIndex);
       }
     }

@@ -18,8 +18,8 @@ describe('Board', function() {
       });
     });
   };
-/*
-  describe('Empty board', function() {
+
+  xdescribe('Empty board', function() {
     verifyConflictTypes([''], [
       [0, 0, 0, 0],
       [0, 0, 0, 0],
@@ -27,7 +27,7 @@ describe('Board', function() {
       [0, 0, 0, 0]
     ]);
   });
-*/
+
   describe('Board with row conflicts', function() {
     verifyConflictTypes(['row', 'rooks', 'queens'], [
       [0, 0, 0, 0],
